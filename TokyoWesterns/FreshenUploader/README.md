@@ -105,7 +105,7 @@ In PHP, == or != will only compare value and not type, === will compare both val
 1 === true  = Flase 
 ```
  
-We need to get past the if statment in order for us to download the file, in order for it to get past the if statment the stripos would have to output 0 or false
+We need to get past the if statement in order for us to download the file, to achieve this stripos would have to output 0 or false
 
 In order for stripos to output a 0 file_list would have to be the start of the query
 
@@ -124,7 +124,7 @@ So we know that file_list needs to be at he begining of the file name as well as
 
 Works!! 
 
-What this is doing is are saying look in the file_list directory wait do back a directory so we are back where we are then do back one more directory and grab the file_list.php file
+What this is doing is saying look in the file_list directory wait go back a directory so we are back in the orginal location then do back one more directory and grab the file_list.php file
 
 ```
 <?php
