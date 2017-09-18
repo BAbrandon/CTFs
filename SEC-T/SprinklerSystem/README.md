@@ -50,7 +50,7 @@ CONTENT_TYPE =
 CONTENT_LENGTH =
 ```
 
-At first I was confused about what information this was giving me. Then I relized that it is a script that was run on the web server.
+At first I was confused about what information this was giving me. Then I realized that it is a script that was run on the web server.
 
 Once I figured that out I googled the script /cgi-bin/test-cgi the first link was:
 
