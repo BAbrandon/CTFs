@@ -15,7 +15,7 @@ Author: avlidienbrunn
 
 flag: SECT{-p001_On_t3h_r00f_must_h@v3_A_l3ak!-}
 
-When you first look at the web page it says not to turn on the sprinklers put other that the page does't have anything import on it. 
+When you first look at the web page it says not to turn on the sprinklers, but other than that the page doesn't have anything else of importance on it. 
 
 
 When a web page doesn't have alot of information the first thing I look at is the robots.txt
@@ -56,7 +56,7 @@ Once I figured that out I googled the script /cgi-bin/test-cgi the first link wa
 
 http://insecure.org/sploits/test-cgi.html
 
-The web site show the vulerablity in the script 
+The web site shows that there is a vulnerablity in the script 
 
 http://sprinklers.alieni.se/cgi-bin/test-cgi?*
 
@@ -82,7 +82,7 @@ CONTENT_TYPE =
 CONTENT_LENGTH
 ```
 
-You can see that there is another script in /cgi-bin/ enable_sprinkler
+You can see that there is another script in the /cgi-bin/ directory called enable_sprinkler
 
 http://sprinklers.alieni.se/cgi-bin/enable_sprinkler
 
